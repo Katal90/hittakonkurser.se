@@ -12598,7 +12598,8 @@ body.wnd-fe:not(.touched) .mt-image .mt-text .it-c a:hover {
 }
 
 .s-bdf {
-    width: 100%
+    width: 100%;
+    text-align: center;
 }
 
 .s-bdf.wnd-disabled {
