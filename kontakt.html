@@ -39,6 +39,12 @@
   <link rel="canonical" href="https://www.hittakonkurser.se/" />
 
   <script src="./js/startup.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("HD2M-49EJFYVgo69d");  // Replace with your EmailJS user ID
+    })();
+  </script>
 
   <title>
     Kontakt
@@ -236,7 +242,7 @@
                                       </div>
                                     </div>
                                     <div class="form b b-s b-form-default f-rh-normal f-rg-normal f-br-none default cf">
-                                      <form action="" method="post">
+                                      <form action="" method="post" id="contact-form">
 
                                         <fieldset class="form-fieldset">
                                           <div>
@@ -244,23 +250,22 @@
                                               <label for="field-wnd_ShortTextField_260897857"><span class="it b link">
                                                   <span class="it-c">Ditt namn</span>
                                                 </span></label>
-                                              <input id="field-wnd_ShortTextField_260897857"
-                                                name="wnd_ShortTextField_260897857" required value="" type="text"
-                                                maxlength="150">
+                                              <input id="field-wnd_ShortTextField_260897857" name="name" required
+                                                value="" type="text" maxlength="150">
                                             </div>
                                             <div class="form-input form-email cf wnd-form-field wnd-required">
                                               <label for="field-wnd_EmailField_463725784"><span class="it b link">
                                                   <span class="it-c">E-post</span>
                                                 </span></label>
-                                              <input id="field-wnd_EmailField_463725784" name="wnd_EmailField_463725784"
-                                                required value="@" type="email" maxlength="255">
+                                              <input id="field-wnd_EmailField_463725784" name="email" required value="@"
+                                                type="email" maxlength="255">
                                             </div>
                                             <div class="form-input form-textarea cf wnd-form-field wnd-required">
                                               <label for="field-wnd_LongTextField_360901023"><span class="it b link">
                                                   <span class="it-c">Meddelande</span>
                                                 </span></label>
-                                              <textarea rows="5" id="field-wnd_LongTextField_360901023"
-                                                name="wnd_LongTextField_360901023" required></textarea>
+                                              <textarea rows="5" id="field-wnd_LongTextField_360901023" name="message"
+                                                required></textarea>
                                             </div>
                                           </div>
                                         </fieldset>
@@ -354,6 +359,19 @@
 
   <script src="./js/jquery.js"></script>
   <script>document.querySelector(".wnd-fe") && [...document.querySelectorAll(".c")].forEach((e => { const t = e.querySelector(".b-text:only-child"); t && "" === t.querySelector(".b-text-c").innerText && e.classList.add("column-empty") }))</script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+      event.preventDefault();  // Prevent default form submission
+
+      emailjs.sendForm('service_0wfig4v', 'template_5o0luxd', this)
+        .then(function () {
+          alert('Message sent successfully!');
+          location.reload();
+        }, function (error) {
+          alert('Failed to send message: ' + JSON.stringify(error));
+        });
+    });
+  </script>
 </body>
 
 </html>
